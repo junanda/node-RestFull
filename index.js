@@ -12,6 +12,7 @@ const StringDecoder = require('string_decoder').StringDecoder;
 const config = require('./config');
 const fs = require('fs');
 const handlers = require('./lib/handler');
+const helpers = require('./lib/helpers');
 
 
 //Instantiate the HTTP server
@@ -76,7 +77,7 @@ const unifiedServer = (req, res)=>{
       'queryStringObject': queryStringObject,
       'method': method,
       'headers': headers,
-      'payload': buffer
+      'payload': helpers.parseJsonToObject(buffer)
     };
 
     // Route the request to the handler specified in the router
